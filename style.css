@@ -1,0 +1,201 @@
+/* flexleri biz containera yanı taşıyıcısına veririz .responsive web sayfaları için yapacağız bunu. */
+/* 
+--flex-direction--> alt alta(row) veya yan yana(column) yapabiliriz. (reverse)terstten de sıralayabşliriz.
+
+---flex-wrap --> ekran büyütüp küçülttükçe kutularda ekrana göre alt aşlta veya yan yana gelir.
+
+/flex özelliğini (display:flex) taşıyıcıya yani containera veriyoruz.yatayda ve dikeyde hizalamayı içinde yapıyoruz. yatayda hizalamayı justify-content:flex-start|flex-end|center|space-betwen|space-around|space-evenly le yapıyoruz
+
+dikeyde hizalamayı da align-items ile yapıyoruz.align-items:strech(default)|flex-start( en yukarıya hizalar.)|flex-end(en aşağıya hizalar)|center(ortalar)|baseline(yazlıları ortalar.)
+
+grup olarak hizalamak istersek:align-content
+
+*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 1rem;
+}
+
+ul{
+    /* height: 50vh; */
+    
+    padding: 1rem; /* bunu vermeseydik en baştaki ve en sondaki kutu yaslanacaktı sıfıra sıfır.*/
+    background-color: blueviolet;
+    list-style-type: none;
+    display: flex; /* liler yan yana dizilmiş oldu bunlar item denir.*/
+    /*flex-direction: column;  alt alta hizalar */
+    /* flex-direction: column-reverse; bu tesrtten altalta sıralar. */
+    flex-direction: row;  /*default olarak bu gelir yan yana display flex yapınca*/
+    /* flex-direction: row-reverse; bu da terstten yan yana sıralar. */
+    flex-wrap: wrap; /*bu özellik sayesinde ekran küçüldükçe kutular da alt alta geliyor.fazlalıklar aşağıya inmiş oluyor.*/ 
+
+/* GAP BU ELEMANLAR ARASINDA BOŞLUK BIRAKIR. */
+gap: 1rem; /*dört taraftan da ayrı ayrı vermiş olutyoruz.*/
+/* gap: 1rem 0; bu satırlar arsı 1 rem boşluk bırakırken , 0 ile stunlar arası boşluk olmaz */
+justify-content:center;
+/* justify-content: flex-end; /*sona hizalar*/
+/* justify-content: flex-start;  başa hizlar. */ 
+/* justify-content: space-between; eşit aralıklarla dağıtır. birinci ve son elemanını başa ve sona gönderir. ve diğerlerini eşit aralıklarla hizalar. */
+/* justify-content: space-around; en baştaki ve en sondakinden yarım birim boşluk bırakırken diğerlerinden 2 katı boşluk bırakır */
+/* justify-content: space-evenly; eşit bir şekilde hepsini flex alanına yayıyor. */
+
+/* DİKEYDE HİZALAMA YAPMAK İÇİN TAŞIYICIMIN YĞKSEKLİĞİ OLMALI YÜKSEKLİK VERMELİYİZ UL YE ALİGN İTEM */
+ align-items: center;
+ align-items: baseline;
+ /* align-content: center; */
+ /*height verdikten sonra uygulayabildik.*/
+/* align-items: baseline;
+align-items: end;
+align-items: flex-start; */
+
+} 
+
+ul *{
+    /* ul * {} ulnin içindeki her eşy demek */
+    background-color: cadetblue;
+    border-radius: 10px;
+    padding: 1rem ;
+    border: 2px solid red;
+}
+
+
+/* -------items --------------- */
+
+
+/* ?---------order akıştaki yerlerini belirler.----- */
+/* order sıraya koyar order değeriyle. */
+.li1{
+    order: 5;
+    /* baseline vermek için padding vermemiz gerek . */
+    padding: 2rem 0;
+}
+.li2{
+    order: 1;
+    padding: 4rem 0;
+}
+.li3{
+    order: 4;
+    padding: 6rem 0;
+}
+.li4{
+    order: 3;
+    padding: 3rem 0;
+}
+.li5{
+    order: 2;
+    padding: 5rem 0;
+}
+
+/* -------FLEX-GROW(BÜYÜME ORANI)  | FLEX-SHRINK(KÜÇÜLME ORANI) | FLEX-BASES(GENİŞİLİĞİ) ------------------------ */
+
+.container{
+    margin-top: 20px;
+    background-color: chocolate;
+    padding: 1rem;
+    display: flex; 
+    /* justify-content: space-between; */
+   /* flex-direction: row;*/
+ flex-wrap: wrap;
+  gap: 1rem; 
+  
+}
+
+.container *{
+    background-color:palevioletred;
+    /* border: 2px solid red; */
+    /* border-radius: 5px; */
+    height: 50px;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.container header{
+flex-basis: 100%;
+}
+.container footer{
+flex-basis: 100%;
+}
+.container aside{
+/* flex-basis: 20%; */
+flex-grow: 1; /*kalan boşluklarda alanı*/
+}
+.container article{
+/* flex-basis: 20%; */
+flex-grow: 1; /*kalan boşluklarda büyüyor.*/
+}
+.container main{
+/* flex-basis: 50%; */
+flex-grow: 5;  /*kalan boşluklarda büyüyüyor*/
+}
+
+
+.shrink{
+    background-color: blueviolet;
+    margin-top: 50px;
+    display: flex;
+    
+    
+}
+.shrink *{
+    width: 200px;
+    height: 100px;
+   
+}
+
+.box1{
+   background-color: cadetblue; 
+   flex-shrink:0 ; /* box1 küçülmesin istersem*/
+   flex-grow: 1;
+}
+.box2{
+background-color: gold;
+flex-shrink: 5;  /*box2 beş birim küçülsün istersem*/
+flex-grow: 1;
+}
+.box3{
+background-color: pink;
+flex-shrink:2 ; /*2 birim küçülsün */
+flex-grow: 1;
+}
+
+.container2{
+ margin-top: 20px;
+ background-color: blueviolet;
+padding: 1rem;
+display: flex;
+gap: 1rem;
+flex-wrap: wrap;
+justify-content: space-between;
+
+}
+
+.container2 *{
+  background-color: green;
+  height: 50px;
+  
+ 
+}
+
+.container2 header{
+width: 100%;
+background-image: url("https://picsum.photos/id/1060/600/400");
+background-size:contain;
+}
+.container2 footer{
+width: 100%;
+}
+.container2 aside{
+width: 30%;
+}
+.container2 article{
+width: 30%;
+}
+.container2 main{
+width: 30%;
+}
